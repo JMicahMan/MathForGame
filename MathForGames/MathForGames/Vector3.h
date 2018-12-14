@@ -2,6 +2,8 @@
 #include <math.h>
 #include "Vector3.h"
 
+
+template <class T>
 class Vector3
 {
 
@@ -23,5 +25,4 @@ public:
 	Vector3 Normalize();
 	float Distance(Vector3 other);
 };
-
 

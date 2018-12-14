@@ -5,93 +5,204 @@
 
 
 
-Vector2 Vector2::operator+(Vector2 & rhs)
+template<class T>
+ Vector2<T>::Vector2()
 {
-	
-	return Vector2();
+
 }
 
-inline Vector2 Vector2::operator-(Vector2 & rhs)
-{
-	return Vector2();
-}
+ template<class T>
+ Vector2<T>::~Vector2()
+ {
+ }
 
-inline Vector2 Vector2::operator*(float & rhs)
-{
-	return Vector2();
-}
+ template<class T>
+ Vector2 Vector2<T>::operator+(Vector2 & rhs)
+ {
+	 rhs = (xpos + ypos);
+	 return Vector2();
+ }
 
-inline bool Vector2::operator==(Vector2 & rhs)
-{
-	return false;
-}
+ template<class T>
+ Vector2 Vector2<T>::operator-(Vector2 & rhs)
+ {
+	 rhs = (xpos - ypos);
+	 return Vector2();
+ }
 
-inline bool Vector2::operator!=(Vector2 & rhs)
-{
-	return false;
-}
+ template<class T>
+ Vector2 Vector2<T>::operator*(float & rhs)
+ {
+	 rhs = (xpos * ypos);
+	 return Vector2();
+ }
 
-inline float Vector2::magnitude()
-{
-	float cpos;
-	cpos = sqrt((xpos*xpos) + (ypos * ypos));
-	return cpos;
-}
+ template<class T>
+ bool Vector2<T>::operator==(Vector2 & rhs)
+ {
+	 if (xpos == ypos)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+ }
 
-inline Vector2 Vector2::Normalize()
-{
-	float normiex;
-	float normiey;
-	normiex = (xpos / magnitude());
-	normiey = (ypos / magnitude());
+ template<class T>
+ bool Vector2<T>::operator!=(Vector2 & rhs)
+ {
+	 if (xpos != ypos)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+ }
 
-	return Vector2();
-}
+ template<class T>
+ float Vector2<T>::magnitude()
+ {
+	 float cpos;
+	 cpos = sqrt((xpos * xpos) + (ypos * ypos));
+	 return cpos;
+ }
 
-inline float Vector2::Distance(Vector2 other)
-{
-	return 0.0f;
-}
+ template<class T>
+ Vector2 Vector2<T>::Normalize()
+ {
+	 float cpos;
+	 cpos = sqrt((xpos * xpos) + (ypos * ypos));
+	 float normiex;
+	 float normiey;
+	 normiex = (xpos / cpos);
+	 normiey = (ypos / cpos);
+	 return Vector2();
+ }
 
-Vector3 Vector3::operator+(Vector3 & rhs)
-{
-	
-	return Vector3();
-}
+ template<class T>
+ float Vector2<T>::Distance(Vector2 other)
+ {
+	 float dpos;
+	 if (xpos > ypos)
+	 {
+		 dpos = xpos - ypos;
+	 }
 
-inline Vector3 Vector3::operator-(Vector3 & rhs)
-{
-	return Vector3();
-}
+	 else if (xpos < ypos)
+	 {
+		 dpos = ypos - xpos;
+	 }
 
-inline Vector3 Vector3::operator*(float & rhs)
-{
-	return Vector3();
-}
+	 else
+	 {
+		 dpos = 0.0f;
+	 }
 
-inline bool Vector3::operator==(Vector3 & rhs)
-{
-	return false;
-}
+	 return dpos;
+ }
 
-inline bool Vector3::operator!=(Vector3 & rhs)
-{
-	return false;
-}
+ template<class T>
+ Vector3<T>::Vector3()
+ {
+ }
 
-inline float Vector3::magnitude()
-{
-	float cpos2;
-	cpos2 = sqrt((xpos2*xpos2) + (ypos2 * ypos2));
-	return cpos2;
-}
+ template<class T>
+ Vector3<T>::~Vector3()
+ {
+ }
 
-inline Vector3 Vector3::Normalize()
-{
-	float normiex2;
-	float normiey2;
-	normiex2 = (xpos2 / magnitude());
-	normiey2 = (ypos2 / magnitude());
+ template<class T>
+ Vector3 Vector3<T>::operator+(Vector3 & rhs)
+ {
+	 rhs = (xpos2 + ypos2);
+	 return Vector3();
+ }
 
-	return Vector3();
-}
+ template<class T>
+ Vector3 Vector3<T>::operator-(Vector3 & rhs)
+ {
+	 rhs = (xpos2 - ypos2);
+
+	 return Vector3();
+ }
+
+ template<class T>
+ Vector3 Vector3<T>::operator*(float & rhs)
+ {
+	 rhs = (xpos2 * ypos2);
+
+	 return Vector3();
+ }
+
+ template<class T>
+ bool Vector3<T>::operator==(Vector3 & rhs)
+ {
+	 if (xpos2 == ypos2)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+ }
+
+ template<class T>
+ bool Vector3<T>::operator!=(Vector3 & rhs)
+ {
+	 if (xpos2 != ypos2)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		 return false;
+	 }
+ }
+
+ template<class T>
+ float Vector3<T>::magnitude()
+ {
+	 float cpos2;
+	 cpos2 = sqrt((xpos2 * xpos2) + (ypos2 * ypos2));
+	 return cpos2;
+ }
+
+ template<class T>
+ Vector3 Vector3<T>::Normalize()
+ {
+
+	 float cpos2;
+	 cpos2 = sqrt((xpos2 * xpos2) + (ypos2 * ypos2));
+	 float normiex2;
+	 float normiey2;
+	 normiex = (xpos2 / cpos2);
+	 normiey = (ypos2 / cpos2);
+	 return Vector3();
+ }
+
+ template<class T>
+ float Vector3<T>::Distance(Vector3 other)
+ {
+	 float dpos2;
+	 if (xpos2 > ypos2)
+	 {
+		 dpos2 = xpos2 - ypos2;
+	 }
+
+	 else if (xpos2 < ypos2)
+	 {
+		 dpos2 = ypos2 - xpos2;
+	 }
+
+	 else
+	 {
+		 dpos2 = 0.0f;
+	 }
+
+	 return dpos2;
+ }
