@@ -191,7 +191,7 @@ template<class T>
 	 float dpos2;
 	 if (xpos2 > ypos2)
 	 {
-		 dpos2 = xpos2 - ypos2;
+		 dpos2 = xpos2 - ypos2;//fgre
 	 }
 
 	 else if (xpos2 < ypos2)
