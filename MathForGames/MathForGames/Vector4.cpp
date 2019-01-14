@@ -5,43 +5,43 @@
 
 
 
+
 template<class T>
-Vector4<T>::Vector4()
+Vector2<T>::Vector4()
+{
+
+}
+
+template<class T>
+Vector2<T>::~Vector4()
 {
 }
 
 template<class T>
-Vector4<T>::~Vector4()
+Vector2 Vector4<T>::operator+(Vector4 & rhs)
 {
-}
-
-template<class T>
-Vector4 Vector4<T>::operator+(Vector4 & rhs)
-{
-	rhs = (xpos2 + ypos2);
+	rhs = (xpos1 + xpos1, ypos1 + ypos2);
 	return Vector4();
 }
 
 template<class T>
-Vector4 Vector4<T>::operator-(Vector4 & rhs)
+Vector2 Vector4<T>::operator-(Vector4 & rhs)
 {
-	rhs = (xpos2 - ypos2);
-
+	rhs = (xpos1 - xpos2, ypos1 - ypos2);
 	return Vector4();
 }
 
 template<class T>
 Vector4 Vector4<T>::operator*(float & rhs)
 {
-	rhs = (xpos2 * ypos2);
-
+	rhs = (xpos1*xpos2) + (ypos1*ypos2);
 	return Vector4();
 }
 
 template<class T>
 bool Vector4<T>::operator==(Vector4 & rhs)
 {
-	if (xpos2 == ypos2)
+	if (xpos1 == xpos2 && ypos1 == ypos2)
 	{
 		return true;
 	}
@@ -54,7 +54,7 @@ bool Vector4<T>::operator==(Vector4 & rhs)
 template<class T>
 bool Vector4<T>::operator!=(Vector4 & rhs)
 {
-	if (xpos2 != ypos2)
+	if (xpos1 != xpos1 || ypos1 != ypos2)
 	{
 		return true;
 	}
@@ -67,42 +67,39 @@ bool Vector4<T>::operator!=(Vector4 & rhs)
 template<class T>
 float Vector4<T>::magnitude()
 {
-	float cpos2;
-	cpos2 = sqrt((xpos2 * xpos2) + (ypos2 * ypos2));
-	return cpos2;
+	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
+	return zpos1;
 }
 
 template<class T>
 Vector4 Vector4<T>::Normalize()
 {
 
-	float cpos2;
-	cpos2 = sqrt((xpos2 * xpos2) + (ypos2 * ypos2));
-	float normiex2;
-	float normiey2;
-	normiex = (xpos2 / cpos2);
-	normiey = (ypos2 / cpos2);
-	return Vector3();
+	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
+	float normiex;
+	float normiey;
+	normiex = (xpos1 / zpos1);
+	normiey = (ypos1 / zpos1);
+	return Vector4();
 }
 
 template<class T>
 float Vector4<T>::Distance(Vector4 other)
 {
-	float dpos2;
-	if (xpos2 > ypos2)
+	if (xpos1 > ypos1)
 	{
-		dpos2 = xpos2 - ypos2;//fgre
+		zpos1 = xpos1 - ypos1;
 	}
 
-	else if (xpos2 < ypos2)
+	else if (xpos1 < ypos1)
 	{
-		dpos2 = ypos2 - xpos2;
+		zpos1 = ypos1 - xpos1;
 	}
 
 	else
 	{
-		dpos2 = 0.0f;
+		zpos1 = 0.0f;
 	}
 
-	return dpos2;
+	return zpos1;
 }

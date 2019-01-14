@@ -15,28 +15,28 @@ Vector2<T>::~Vector2()
 template<class T>
 Vector2 Vector2<T>::operator+(Vector2 & rhs)
 {
-	rhs = (xpos + ypos);
+	rhs = (xpos1 + xpos1 , ypos1 + ypos2);
 	return Vector2();
 }
 
 template<class T>
 Vector2 Vector2<T>::operator-(Vector2 & rhs)
 {
-	rhs = (xpos - ypos);
+	rhs = (xpos1 - xpos2 ,ypos1 - ypos2);
 	return Vector2();
 }
 
 template<class T>
 Vector2 Vector2<T>::operator*(float & rhs)
 {
-	rhs = (xpos * ypos);
+	rhs = (xpos1*xpos2)+(ypos1*ypos2);
 	return Vector2();
 }
 
 template<class T>
 bool Vector2<T>::operator==(Vector2 & rhs)
 {
-	if (xpos == ypos)
+	if (xpos1 == xpos2 && ypos1 == ypos2)
 	{
 		return true;
 	}
@@ -49,7 +49,7 @@ bool Vector2<T>::operator==(Vector2 & rhs)
 template<class T>
 bool Vector2<T>::operator!=(Vector2 & rhs)
 {
-	if (xpos != ypos)
+	if (xpos1 != xpos1 || ypos1 != ypos2)
 	{
 		return true;
 	}
@@ -62,41 +62,39 @@ bool Vector2<T>::operator!=(Vector2 & rhs)
 template<class T>
 float Vector2<T>::magnitude()
 {
-	float cpos;
-	cpos = sqrt((xpos * xpos) + (ypos * ypos));
-	return cpos;
+	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
+	return zpos1;
 }
 
 template<class T>
 Vector2 Vector2<T>::Normalize()
 {
-	float cpos;
-	cpos = sqrt((xpos * xpos) + (ypos * ypos));
+	
+	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
 	float normiex;
 	float normiey;
-	normiex = (xpos / cpos);
-	normiey = (ypos / cpos);
+	normiex = (xpos1 / zpos1);
+	normiey = (ypos1 / zpos1);
 	return Vector2();
 }
 
 template<class T>
 float Vector2<T>::Distance(Vector2 other)
 {
-	float dpos;
-	if (xpos > ypos)
+	if (xpos1 > ypos)
 	{
-		dpos = xpos - ypos;
+		zpos1 = xpos1 - ypos1;
 	}
 
-	else if (xpos < ypos)
+	else if (xpos1 < ypos1)
 	{
-		dpos = ypos - xpos;
+		zpos1 = ypos1 - xpos1;
 	}
 
 	else
 	{
-		dpos = 0.0f;
+		zpos1 = 0.0f;
 	}
 
-	return dpos;
+	return zpos1;
 }

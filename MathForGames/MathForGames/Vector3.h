@@ -8,8 +8,15 @@ class Vector3
 {
 
 private:
+	float xpos1;
+	float ypos1;
+	float zpos1;
 	float xpos2;
 	float ypos2;
+	float zpos2;
+	float xpos3;
+	float ypos3;
+	float zpos3;
 
 public:
 	Vector3();

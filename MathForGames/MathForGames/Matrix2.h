@@ -14,8 +14,6 @@ public:
 	Vector2 yAxis;
 	Vector2 zAxis;
 
-	vector<vector<double>> defineMatr(int dimM, int dimN);
-
 
 
 };
