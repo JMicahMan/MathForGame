@@ -1,42 +1,61 @@
 #include "Vector2.h"
+#include <math.h>
 
 
 template<class T>
 Vector2<T>::Vector2()
 {
-
+	xpos1 = 0.0f;
+	ypos1 = 0.0f;
 }
 
 template<class T>
-Vector2<T>::~Vector2()
+Vector2<T>::Vector2(float x, float y)
 {
+	xpos1 = x;
+	ypos1 = y;
+}
+
+
+
+
+
+template<class T>
+float Vector2<T>::getx()
+{
+	return xpos1;
+}
+
+template<class T>
+float Vector2<T>::gety()
+{
+	return ypos1;
 }
 
 template<class T>
 Vector2 Vector2<T>::operator+(Vector2 & rhs)
 {
-	rhs = (xpos1 + xpos1 , ypos1 + ypos2);
-	return Vector2();
+
+	return Vector2((x + rhs),(y + rhs) );
 }
 
 template<class T>
 Vector2 Vector2<T>::operator-(Vector2 & rhs)
 {
-	rhs = (xpos1 - xpos2 ,ypos1 - ypos2);
-	return Vector2();
+	return Vector2((x - rhs),(y - rhs));
 }
 
 template<class T>
 Vector2 Vector2<T>::operator*(float & rhs)
 {
-	rhs = (xpos1*xpos2)+(ypos1*ypos2);
-	return Vector2();
+	scale = rhs;
+	return Vector2((x * scale), (y * scale));
 }
 
 template<class T>
 bool Vector2<T>::operator==(Vector2 & rhs)
 {
-	if (xpos1 == xpos2 && ypos1 == ypos2)
+	if ((xpos1 == rhs.getx())&&(ypos1 == rhs.gety()))
 	{
 		return true;
 	}
@@ -49,7 +68,7 @@ bool Vector2<T>::operator==(Vector2 & rhs)
 template<class T>
 bool Vector2<T>::operator!=(Vector2 & rhs)
 {
-	if (xpos1 != xpos1 || ypos1 != ypos2)
+	if ((xpos1 != rhs.getx()) && (ypos1 != rhs.gety()))
 	{
 		return true;
 	}
@@ -62,39 +81,39 @@ bool Vector2<T>::operator!=(Vector2 & rhs)
 template<class T>
 float Vector2<T>::magnitude()
 {
-	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
-	return zpos1;
+	float mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
+	return mag;
 }
 
 template<class T>
-Vector2 Vector2<T>::Normalize()
+Vector2 Vector2<T>::normalise()
 {
-	
-	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
-	float normiex;
-	float normiey;
-	normiex = (xpos1 / zpos1);
-	normiey = (ypos1 / zpos1);
-	return Vector2();
+	Vector2 mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
+
+	Vector2 norm = ((xpos1/mag), (ypos1/mag));
+
+	return norm;
 }
 
 template<class T>
-float Vector2<T>::Distance(Vector2 other)
+float Vector2<T>::dot(Vector2 & rhs)
 {
-	if (xpos1 > ypos)
-	{
-		zpos1 = xpos1 - ypos1;
-	}
-
-	else if (xpos1 < ypos1)
-	{
-		zpos1 = ypos1 - xpos1;
-	}
-
-	else
-	{
-		zpos1 = 0.0f;
-	}
-
-	return zpos1;
+	float dotprod = (xpos1 * rhs.getx) + (ypos1 * rhs.gety);
+	return dotprod;
 }
+
+template<class T>
+float Vector2<T>::operator[](index)
+{
+	if (index == 0)
+	{
+		return xpos1;
+	}
+
+	else if (index == 1)
+	{
+		return ypos1;
+	}
+}
+
+
