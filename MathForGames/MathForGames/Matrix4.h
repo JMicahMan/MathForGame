@@ -6,6 +6,9 @@ template <class T>
 class Matrix4
 {
 public:
+
+	Matrix4();
+
 	float Matr[4][4];
 
 	Vector4 xAxis;

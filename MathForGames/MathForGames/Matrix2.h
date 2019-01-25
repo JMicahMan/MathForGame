@@ -7,13 +7,16 @@ class Matrix2
 {
 public:
 
+	Matrix2();
+
 	float Matr[2][2];
 
 
-	Vector2 xAxis;
-	Vector2 yAxis;
-	Vector2 zAxis;
+	Vector2 xAxis();
+	Vector2 yAxis();
+	Vector2 zAxis();
 
 
 
 };
+

@@ -1,47 +1,61 @@
 #include "Vector4.h"
-
-
-
-
-
+#include <math.h>
 
 
 template<class T>
-Vector2<T>::Vector4()
+Vector4<T>::Vector4()
 {
-
+	xpos1 = 0.0f;
+	ypos1 = 0.0f;
 }
 
 template<class T>
-Vector2<T>::~Vector4()
+Vector4<T>::Vector4(float x, float y)
 {
+	xpos1 = x;
+	ypos1 = y;
+}
+
+
+
+
+
+template<class T>
+float Vector4<T>::getx()
+{
+	return xpos1;
 }
 
 template<class T>
-Vector2 Vector4<T>::operator+(Vector4 & rhs)
+float Vector4<T>::gety()
 {
-	rhs = (xpos1 + xpos1, ypos1 + ypos2);
-	return Vector4();
+	return ypos1;
 }
 
 template<class T>
-Vector2 Vector4<T>::operator-(Vector4 & rhs)
+Vector4 Vector4<T>::operator+(Vector4 & rhs)
 {
-	rhs = (xpos1 - xpos2, ypos1 - ypos2);
-	return Vector4();
+
+	return Vector4((x + rhs), (y + rhs));
+}
+
+template<class T>
+Vector4 Vector4<T>::operator-(Vector4 & rhs)
+{
+	return Vector4((x - rhs), (y - rhs));
 }
 
 template<class T>
 Vector4 Vector4<T>::operator*(float & rhs)
 {
-	rhs = (xpos1*xpos2) + (ypos1*ypos2);
-	return Vector4();
+	scale = rhs;
+	return Vector4((x * scale), (y * scale));
 }
 
 template<class T>
 bool Vector4<T>::operator==(Vector4 & rhs)
 {
-	if (xpos1 == xpos2 && ypos1 == ypos2)
+	if ((xpos1 == rhs.getx()) && (ypos1 == rhs.gety()))
 	{
 		return true;
 	}
@@ -54,7 +68,7 @@ bool Vector4<T>::operator==(Vector4 & rhs)
 template<class T>
 bool Vector4<T>::operator!=(Vector4 & rhs)
 {
-	if (xpos1 != xpos1 || ypos1 != ypos2)
+	if ((xpos1 != rhs.getx()) && (ypos1 != rhs.gety()))
 	{
 		return true;
 	}
@@ -67,39 +81,38 @@ bool Vector4<T>::operator!=(Vector4 & rhs)
 template<class T>
 float Vector4<T>::magnitude()
 {
-	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
-	return zpos1;
+	float mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
+	return mag;
 }
 
 template<class T>
-Vector4 Vector4<T>::Normalize()
+Vector4 Vector4<T>::normalise()
 {
+	Vector4 mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
 
-	zpos1 = sqrt((xpos1 * xpos1) + (ypos1 * ypos1));
-	float normiex;
-	float normiey;
-	normiex = (xpos1 / zpos1);
-	normiey = (ypos1 / zpos1);
-	return Vector4();
+	Vector4 norm = ((xpos1 / mag), (ypos1 / mag));
+
+	return norm;
 }
 
 template<class T>
-float Vector4<T>::Distance(Vector4 other)
+float Vector4<T>::dot(Vector4 & rhs)
 {
-	if (xpos1 > ypos1)
-	{
-		zpos1 = xpos1 - ypos1;
-	}
-
-	else if (xpos1 < ypos1)
-	{
-		zpos1 = ypos1 - xpos1;
-	}
-
-	else
-	{
-		zpos1 = 0.0f;
-	}
-
-	return zpos1;
+	float dotprod = (xpos1 * rhs.getx) + (ypos1 * rhs.gety);
+	return dotprod;
 }
+
+template<class T>
+float Vector4<T>::operator[](index)
+{
+	if (index == 0)
+	{
+		return xpos1;
+	}
+
+	else if (index == 1)
+	{
+		return ypos1;
+	}
+}
+
