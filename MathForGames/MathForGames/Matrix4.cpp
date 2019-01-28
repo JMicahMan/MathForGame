@@ -8,19 +8,39 @@ Matrix4<T>::Matrix4()
 }
 
 template<class T>
-Vector4 Matrix4<T>::xAxis()
+Matrix4<T>::~Matrix4()
 {
-	return Vector4();
 }
 
 template<class T>
-Vector4 Matrix4<T>::yAxis()
+Matrix4 Matrix4<T>::operator*(Matrix4 rhs)
 {
-	return Vector4();
+	return Matrix4();
 }
 
 template<class T>
-Vector4 Matrix4<T>::zAxis()
+Matrix4 Matrix4<T>::operator+(Matrix4 rhs)
 {
-	return Vector4();
+	return Matrix4();
+}
+
+template<class T>
+Matrix4 Matrix4<T>::operator-(Matrix4 rhs)
+{
+	return Matrix4();
+}
+
+template<class T>
+void Matrix4<T>::rotX(float raidian)
+{
+}
+
+template<class T>
+void Matrix4<T>::roty(float raidian)
+{
+}
+
+template<class T>
+void Matrix4<T>::rotz(float raidian)
+{
 }

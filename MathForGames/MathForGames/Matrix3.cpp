@@ -8,19 +8,40 @@ Matrix3<T>::Matrix3()
 }
 
 template<class T>
-Vector3 Matrix3<T>::xAxis()
+Matrix3<T>::~Matrix3()
 {
-	return Vector3();
 }
 
 template<class T>
-Vector3 Matrix3<T>::yAxis()
+Matrix3 Matrix3<T>::operator*(Matrix3 rhs)
 {
-	return Vector2();
+	return Matrix3();
 }
 
 template<class T>
-Vector3 Matrix3<T>::zAxis()
+Matrix3 Matrix3<T>::operator+(Matrix3 rhs)
 {
-	return Vector3();
+	return Matrix3();
 }
+
+template<class T>
+Matrix3 Matrix3<T>::operator-(Matrix3 rhs)
+{
+	return Matrix3();
+}
+
+template<class T>
+void Matrix3<T>::rotX(float raidian)
+{
+}
+
+template<class T>
+void Matrix3<T>::roty(float raidian)
+{
+}
+
+template<class T>
+void Matrix3<T>::rotz(float raidian)
+{
+}
+
