@@ -9,6 +9,11 @@ Vector2<T>::Vector2()
 	ypos1 = 0.0f;
 }
 
+//template<class T>
+//Vector2<T>::Vector2(float, float)
+//{
+//}
+
 template<class T>
 Vector2<T>::Vector2(float x, float y)
 {

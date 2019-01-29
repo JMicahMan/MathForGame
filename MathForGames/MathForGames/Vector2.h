@@ -13,7 +13,7 @@ private:
 
 public:
 	Vector2();
-	Vector2(float float);
+	Vector2(float, float);
 
 	float getx();
 	float gety();
@@ -23,10 +23,10 @@ public:
 	bool operator == (Vector2& rhs);
 	bool operator != (Vector2& rhs);
 	float magnitude();
-	Vector2.normalise();
+	Vector2 normalise();
 	float dot(Vector2& rhs);
 	//Vector2.cross(Vector2);
-	float operator[] (index);
+	//float operator[] (index);
 
 	
 
