@@ -7,13 +7,6 @@
 
 int main()
 {
-	//Vector2<float> test = (2,3);
-	//float testScale = 5;
-
-	//float testansw = test.getx();
-
-	//std::cout << testansw;
-
-	//system("pause");
+	Vector2 test = Vector2 (2.0f, 3.0f);
 
 }

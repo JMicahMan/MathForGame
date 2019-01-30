@@ -1,66 +1,54 @@
 #include "Vector2.h"
 #include <math.h>
+#include <cmath>
 
 
-template<class T>
-Vector2<T>::Vector2()
-{
-	xpos1 = 0.0f;
-	ypos1 = 0.0f;
-}
 
-//template<class T>
-//Vector2<T>::Vector2(float, float)
-//{
-//}
-
-template<class T>
-Vector2<T>::Vector2(float x, float y)
+Vector2::Vector2(float x, float y)
 {
 	xpos1 = x;
 	ypos1 = y;
+
 }
 
-
-
-
-
-template<class T>
-float Vector2<T>::getx()
+float Vector2::getx()
 {
 	return xpos1;
 }
 
-template<class T>
-float Vector2<T>::gety()
+float Vector2::gety()
 {
 	return ypos1;
 }
 
-template<class T>
-Vector2 Vector2<T>::operator+(Vector2 & rhs)
+Vector2 Vector2::operator+(float & rhs)
 {
-
-	return Vector2((x + rhs),(y + rhs) );
+	float add1 = xpos1 + rhs;
+	float add2 = ypos1 + rhs;
+	Vector2 addtru(add1, add2);
+	return addtru;
 }
 
-template<class T>
-Vector2 Vector2<T>::operator-(Vector2 & rhs)
+Vector2 Vector2::operator-(float & rhs)
 {
-	return Vector2((x - rhs),(y - rhs));
+	float minus1 = xpos1 - rhs;
+	float minus2 = ypos1 - rhs;
+	Vector2 minustru(minus1, minus2);
+	return minustru;
 }
 
-template<class T>
-Vector2 Vector2<T>::operator*(float & rhs)
+Vector2 Vector2::operator*(float & rhs)
 {
-	scale = rhs;
-	return Vector2((x * scale), (y * scale));
+	
+	float prodo1 = xpos1 * rhs;
+	float prodo2 = ypos1 * rhs;
+	Vector2 prodotru (prodo1, prodo2);
+	return prodotru;
 }
 
-template<class T>
-bool Vector2<T>::operator==(Vector2 & rhs)
+bool Vector2::operator==(Vector2 & rhs)
 {
-	if ((xpos1 == rhs.getx())&&(ypos1 == rhs.gety()))
+	if ((xpos1 == rhs.getx()) && (ypos1 == rhs.gety()))
 	{
 		return true;
 	}
@@ -70,8 +58,7 @@ bool Vector2<T>::operator==(Vector2 & rhs)
 	}
 }
 
-template<class T>
-bool Vector2<T>::operator!=(Vector2 & rhs)
+bool Vector2::operator!=(Vector2 & rhs)
 {
 	if ((xpos1 != rhs.getx()) && (ypos1 != rhs.gety()))
 	{
@@ -83,32 +70,42 @@ bool Vector2<T>::operator!=(Vector2 & rhs)
 	}
 }
 
-template<class T>
-float Vector2<T>::magnitude()
+float Vector2::magnitude()
 {
-	float mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
+	float xsqur = xpos1 * xpos1;
+	float ysqur = ypos1 * ypos1;
+	float mag = sqrt(xsqur + ysqur);
 	return mag;
 }
 
-template<class T>
-Vector2 Vector2<T>::normalise()
+float Vector2::normalise()
 {
-	Vector2 mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2));
-
-	Vector2 norm = ((xpos1/mag), (ypos1/mag));
+	float xsqur = xpos1 * xpos1;
+	float ysqur = ypos1 * ypos1;
+	float mag = sqrt(xsqur + ysqur);
+	float normpt1 = xpos1 / mag;
+	float normpt2 = ypos1 / mag;
+	float norm = (normpt1, normpt2);
 
 	return norm;
 }
 
-template<class T>
-float Vector2<T>::dot(Vector2 & rhs)
+float Vector2::dot(Vector2 & rhs)
 {
-	float dotprod = (xpos1 * rhs.getx) + (ypos1 * rhs.gety);
+	float dotprod = (xpos1 * rhs.getx()) + (ypos1 * rhs.gety());
 	return dotprod;
 }
 
-template<class T>
-float Vector2<T>::operator[](index)
+float Vector2::cross(Vector2)
+{
+
+	float cross = sin(xpos1 * ypos1);
+
+	return cross;
+	
+}
+
+float Vector2::operator[](int index)
 {
 	if (index == 0)
 	{
@@ -120,5 +117,3 @@ float Vector2<T>::operator[](index)
 		return ypos1;
 	}
 }
-
-

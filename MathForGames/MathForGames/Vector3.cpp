@@ -1,69 +1,61 @@
 #include "Vector3.h"
 #include <math.h>
+#include <cmath>
 
 
-template<class T>
-Vector3<T>::Vector3()
-{
-	xpos1 = 0.0f;
-	ypos1 = 0.0f;
-	zpos1 = 0.0f;
-}
 
-
-template<class T>
-Vector3<T>::Vector3(float x, float y, float z)
+Vector3::Vector3(float x, float y, float z)
 {
 	xpos1 = x;
 	ypos1 = y;
 	zpos1 = z;
+
 }
 
-
-
-
-
-template<class T>
-float Vector3<T>::getx()
+float Vector3::getx()
 {
 	return xpos1;
 }
 
-template<class T>
-float Vector3<T>::gety()
+float Vector3::gety()
 {
 	return ypos1;
 }
 
-template<class T>
-float Vector3<T>::getz()
+float Vector3::getz()
 {
 	return zpos1;
 }
 
-
-template<class T>
-Vector3 Vector3<T>::operator+(Vector3 & rhs)
+Vector3 Vector3::operator+(float & rhs)
 {
-
-	return Vector3((x + rhs), (y + rhs), (z + rhs));
+	float add1 = xpos1 + rhs;
+	float add2 = ypos1 + rhs;
+	float add3 = zpos1 + rhs;
+	Vector3 addtru(add1, add2, add3);
+	return addtru;
 }
 
-template<class T>
-Vector3 Vector3<T>::operator-(Vector3 & rhs)
+Vector3 Vector3::operator-(float & rhs)
 {
-	return Vector3((x - rhs), (y - rhs), (z - rhs));
+	float minus1 = xpos1 - rhs;
+	float minus2 = ypos1 - rhs;
+	float minus3 = zpos1 - rhs;
+	Vector3 minustru(minus1, minus2, minus3);
+	return minustru;
 }
 
-template<class T>
-Vector3 Vector3<T>::operator*(float & rhs)
+Vector3 Vector3::operator*(float & rhs)
 {
-	scale = rhs;
-	return Vector3((x * scale), (y * scale), (z * sclae));
+
+	float prodo1 = xpos1 * rhs;
+	float prodo2 = ypos1 * rhs;
+	float prodo3 = zpos1 * rhs;
+	Vector3 prodotru(prodo1, prodo2, prodo3);
+	return prodotru;
 }
 
-template<class T>
-bool Vector3<T>::operator==(Vector3 & rhs)
+bool Vector3::operator==(Vector3 & rhs)
 {
 	if ((xpos1 == rhs.getx()) && (ypos1 == rhs.gety()) && (zpos1 == rhs.getz()))
 	{
@@ -75,8 +67,7 @@ bool Vector3<T>::operator==(Vector3 & rhs)
 	}
 }
 
-template<class T>
-bool Vector3<T>::operator!=(Vector3 & rhs)
+bool Vector3::operator!=(Vector3 & rhs)
 {
 	if ((xpos1 != rhs.getx()) && (ypos1 != rhs.gety()) && (zpos1 != rhs.getz()))
 	{
@@ -88,46 +79,58 @@ bool Vector3<T>::operator!=(Vector3 & rhs)
 	}
 }
 
-template<class T>
-float Vector3<T>::magnitude()
+float Vector3::magnitude()
 {
-	float mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2) + (zpos1 ^ 2));
+	float xsqur = xpos1 * xpos1;
+	float ysqur = ypos1 * ypos1;
+	float zsqur = zpos1 * zpos1;
+	float mag = sqrt(xsqur + ysqur + zsqur);
 	return mag;
 }
 
-template<class T>
-Vector3 Vector3<T>::normalise()
+float Vector3::normalise()
 {
-	Vector3 mag = sqrt((xpos1 ^ 2) + (ypos1 ^ 2) + (zpos1 ^ 2));
-
-	Vector3 norm = ((xpos1 / mag), (ypos1 / mag), (zpos1 / mag));
+	float xsqur = xpos1 * xpos1;
+	float ysqur = ypos1 * ypos1;
+	float zsqur = zpos1 * zpos1;
+	float mag = sqrt(xsqur + ysqur + zsqur);
+	float normpt1 = xpos1 / mag;
+	float normpt2 = ypos1 / mag;
+	float normpt3 = zpos1 / mag;
+	float norm = (normpt1, normpt2, normpt3);
 
 	return norm;
 }
 
-template<class T>
-float Vector3<T>::dot(Vector3 & rhs)
+float Vector3::dot(Vector3 & rhs)
 {
-	float dotprod = (xpos1 * rhs.getx) + (ypos1 * rhs.gety) + (zpos1 * rhs.getz);
+	float dotprod = (xpos1 * rhs.getx()) + (ypos1 * rhs.gety()) + (zpos1 * rhs.getz());
 	return dotprod;
 }
 
-//template<class T>
-//float Vector3<T>::operator[](index)
-//{
-//	if (index == 0)
-//	{
-//		return xpos1;
-//	}
-//
-//	else if (index == 1)
-//	{
-//		return ypos1;
-//	}
-//
-//	else if (index == 2)
-//	{
-//		return zpos1;
-//	}
-//}
+float Vector3::cross(Vector3)
+{
+	
+	float cross = sin(xpos1 * ypos1 * zpos1);
 
+	return cross;
+
+}
+
+float Vector3::operator[](int index)
+{
+	if (index == 0)
+	{
+		return xpos1;
+	}
+
+	else if (index == 1)
+	{
+		return ypos1;
+	}
+
+	else if (index == 2)
+	{
+		return zpos1;
+	}
+}
