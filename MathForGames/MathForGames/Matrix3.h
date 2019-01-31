@@ -37,12 +37,12 @@ public:
 	float geth();
 	float geti();
 
-	Matrix3 operator + (float& rhs);
-	Matrix3 operator - (float& rhs);
+	
 	Matrix3 operator * (float& rhs);
 
-	bool operator == (Matrix3& rhs);
-	bool operator != (Matrix3& rhs);
+	void rotationX(float);
+	void rotationY(float);
+	void rotationZ(float);
 
 
 };

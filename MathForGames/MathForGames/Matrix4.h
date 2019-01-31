@@ -54,8 +54,7 @@ public:
 	float geto();
 	float getp();
 
-	Matrix4 operator + (float& rhs);
-	Matrix4 operator - (float& rhs);
+	
 	Matrix4 operator * (float& rhs);
 
 	bool operator == (Matrix4& rhs);
