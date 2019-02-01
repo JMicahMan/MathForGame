@@ -17,9 +17,15 @@ private:
 	float gpos;
 	float hpos;
 	float ipos;
-	
+
+
+	float MatDat[3][3];
+	float TempDat[3][3];
 
 public:
+	Matrix3();
+
+	Matrix3(Vector3, Vector3, Vector3);
 
 	Matrix3(
 		float, float, float,
@@ -38,7 +44,7 @@ public:
 	float geti();
 
 	
-	Matrix3 operator * (float& rhs);
+	Matrix3 operator * (Matrix3);
 
 	void rotationX(float);
 	void rotationY(float);
