@@ -1,142 +1,125 @@
 #include "Matrix4.h"
 
+Matrix4::Matrix4()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			MatDat[i][j] = 0;
+			TempDat[i][j] = 0;
+		}
+	}
+}
+
+Matrix4::Matrix4(Vector4 x, Vector4 y, Vector4 z, Vector4 w)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][0] = x[i];
+		TempDat[i][0] = x[i];
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][1] = y[i];
+		TempDat[i][0] = y[i];
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][2] = x[i];
+		TempDat[i][0] = x[i];
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		MatDat[i][3] = z[i];
+		TempDat[i][3] = z[i];
+	}
+
+
+}
+
 Matrix4::Matrix4(float a, float b, float c, float d, float e, float f, float g, float h, float i, float j, float k, float l, float m, float n, float o, float p)
 {
-	apos = a;
-	bpos = b;
-	cpos = c;
-	dpos = d;
-	epos = e;
-	fpos = f;
-	gpos = g;
-	hpos = h;
-	ipos = i;
-	jpos = j;
-	kpos = k;
-	lpos = l;
-	mpos = m;
-	npos = n;
-	opos = o;
-	ppos = p;
-}
-
-float Matrix4::geta()
-{
-	return apos;
-}
-
-float Matrix4::getb()
-{
-	return bpos;
-}
-
-float Matrix4::getc()
-{
-	return cpos;
-}
-
-float Matrix4::getd()
-{
-	return dpos;
-}
-
-float Matrix4::gete()
-{
-	return epos;
-}
-
-float Matrix4::getf()
-{
-	return fpos;
-}
-
-float Matrix4::getg()
-{
-	return gpos;
-}
-
-float Matrix4::geth()
-{
-	return hpos;
-}
-
-float Matrix4::geti()
-{
-	return ipos;
-}
-
-float Matrix4::getj()
-{
-	return jpos;
-}
-
-float Matrix4::getk()
-{
-	return kpos;
-}
-
-float Matrix4::getl()
-{
-	return lpos;
-}
-
-float Matrix4::getm()
-{
-	return mpos;
-}
-
-float Matrix4::getn()
-{
-	return npos;
-}
-
-float Matrix4::geto()
-{
-	return opos;
-}
-
-float Matrix4::getp()
-{
-	return ppos;
 }
 
 
 
 
-Matrix4 Matrix4::operator*(float & rhs)
+
+
+Matrix4 Matrix4::operator*(Matrix4 rhs)
 {
-	float matmula = apos * rhs;
-	float matmulb = bpos * rhs;
-	float matmulc = cpos * rhs;
-	float matmuld = dpos * rhs;
-	float matmule = epos * rhs;
-	float matmulf = fpos * rhs;
-	float matmulg = gpos * rhs;
-	float matmulh = hpos * rhs;
-	float matmuli = ipos * rhs;
-	float matmulj = jpos * rhs;
-	float matmulk = kpos * rhs;
-	float matmull = lpos * rhs;
-	float matmulm = mpos * rhs;
-	float matmuln = npos * rhs;
-	float matmulo = opos * rhs;
-	float matmulp = ppos * rhs;
+	Matrix4 MatProd;
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatProd.MatDat[i][j] = MatDat[i][0] * rhs.MatDat[0][j] + MatDat[i][1] * rhs.MatDat[1][j]
+				+ MatDat[i][2] * rhs.MatDat[2][j];
+			return MatProd;
+		}
+	}
 
 
-	Matrix4 MatProd(matmula, matmulb, matmulc, matmuld,
-					 matmule, matmulf, matmulg, matmulh,
-				     matmuli, matmulj, matmulk, matmull,
-					 matmulm, matmuln, matmulo, matmulp);
-
-	return MatProd;
 }
 
-bool Matrix4::operator==(Matrix4 & rhs)
+void Matrix4::rotationX(float rad)
 {
-	return false;
+	Matrix4 x = Matrix4(cos(rad), sin(rad), 0, 0, -sin(rad), cos(rad), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatDat[i][j] = TempDat[0][i] * x.MatDat[j][0] + TempDat[1][i] * x.MatDat[j][1] +
+				TempDat[2][i] * x.MatDat[j][2] + TempDat[3][i] * x.MatDat[j][3];
+		}
+	}
+
 }
 
-bool Matrix4::operator!=(Matrix4 & rhs)
+void Matrix4::rotationY(float rad)
 {
-	return false;
+
+	Matrix4 y = Matrix4(cos(rad), sin(rad), 0, 0, -sin(rad), cos(rad), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatDat[i][j] = TempDat[0][i] * y.MatDat[j][0] + TempDat[1][i] * y.MatDat[j][1] +
+				TempDat[2][i] * y.MatDat[j][2] + TempDat[3][i] * y.MatDat[j][3];
+		}
+	}
+
+}
+
+void Matrix4::rotationZ(float rad)
+{
+	Matrix4 z = Matrix4(cos(rad), sin(rad), 0, 0, -sin(rad), cos(rad), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatDat[i][j] = TempDat[0][i] * z.MatDat[j][0] + TempDat[1][i] * z.MatDat[j][1] +
+				TempDat[2][i] * z.MatDat[j][2] + TempDat[3][i] * z.MatDat[j][3];
+		}
+	}
+
+}
+
+void Matrix4::rotationW(float rad)
+{
+	Matrix4 w = Matrix4(cos(rad), sin(rad), 0, 0, -sin(rad), cos(rad), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatDat[i][j] = TempDat[0][i] * w.MatDat[j][0] + TempDat[1][i] * w.MatDat[j][1] +
+				TempDat[2][i] * w.MatDat[j][2] + TempDat[3][i] * w.MatDat[j][3];
+		}
+	}
+
 }

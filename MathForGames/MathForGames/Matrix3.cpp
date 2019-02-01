@@ -2,69 +2,45 @@
 
 Matrix3::Matrix3()
 {
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			MatDat[i][j] = 0;
+			TempDat[i][j] = 0;
+		}
+	}
 }
 
-Matrix3::Matrix3(Vector3, Vector3, Vector3)
+Matrix3::Matrix3(Vector3 x, Vector3 y, Vector3 z)
 {
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][0] = x[i];
+		TempDat[i][0] = x[i];
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][1] = y[i];
+		TempDat[i][0] = y[i];
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		MatDat[i][2] = x[i];
+		TempDat[i][0] = x[i];
+	}
+
+
+
 }
 
 Matrix3::Matrix3(float a, float b, float c, float d, float e, float f, float g, float h, float i)
 {
-	apos = a;
-	bpos = b;
-	cpos = c;
-	dpos = d;
-	epos = e;
-	fpos = f;
-	gpos = g;
-	hpos = h;
-	ipos = i;
+
 }
 
-float Matrix3::geta()
-{
-	return apos;
-}
-
-float Matrix3::getb()
-{
-	return bpos;
-}
-
-float Matrix3::getc()
-{
-	return cpos;
-}
-
-float Matrix3::getd()
-{
-	return dpos;
-}
-
-float Matrix3::gete()
-{
-	return epos;
-}
-
-float Matrix3::getf()
-{
-	return fpos;
-}
-
-float Matrix3::getg()
-{
-	return gpos;
-}
-
-float Matrix3::geth()
-{
-	return hpos;
-}
-
-float Matrix3::geti()
-{
-	return ipos;
-}
 
 
 Matrix3 Matrix3::operator*(Matrix3 rhs)

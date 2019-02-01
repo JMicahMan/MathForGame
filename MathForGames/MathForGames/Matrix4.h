@@ -1,5 +1,4 @@
 #pragma once
-#include <math.h>
 #include <cmath>
 #include "Vector2.h"
 #include "Vector3.h"
@@ -8,27 +7,14 @@
 class Matrix4
 {
 private:
-	float apos;
-	float bpos;
-	float cpos;
-	float dpos;
 
-	float epos;
-	float fpos;
-	float gpos;
-	float hpos;
-
-	float ipos;
-	float jpos;
-	float kpos;
-	float lpos;
-
-	float mpos;
-	float npos;
-	float opos;
-	float ppos;
+	float MatDat[4][4];
+	float TempDat[4][4];
 
 public:
+	Matrix4();
+
+	Matrix4(Vector4, Vector4, Vector4, Vector4);
 
 	Matrix4(
 		float, float, float, float,
@@ -37,28 +23,13 @@ public:
 		float, float, float, float
 	);
 
-	float geta();
-	float getb();
-	float getc();
-	float getd();
-	float gete();
-	float getf();
-	float getg();
-	float geth();
-	float geti();
-	float getj();
-	float getk();
-	float getl();
-	float getm();
-	float getn();
-	float geto();
-	float getp();
+	Matrix4 operator * (Matrix4);
 
-	
-	Matrix4 operator * (float& rhs);
 
-	bool operator == (Matrix4& rhs);
-	bool operator != (Matrix4& rhs);
+	void rotationX(float);
+	void rotationY(float);
+	void rotationZ(float);
+	void rotationW(float);
 
 
 };
