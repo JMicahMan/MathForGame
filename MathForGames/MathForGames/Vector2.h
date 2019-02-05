@@ -2,7 +2,6 @@
 #include <cmath>
 
 
-
 class Vector2
 {
 
@@ -16,9 +15,9 @@ public:
 
 	float getx();
 	float gety();
-	Vector2 operator + (float& rhs);
-	Vector2 operator - (float& rhs);
-	Vector2 operator * (float& rhs);
+	Vector2 operator + (Vector2& rhs);
+	Vector2 operator - (Vector2& rhs);
+	Vector2 operator * (float rhs);
 	bool operator == (Vector2& rhs);
 	bool operator != (Vector2& rhs);
 	float magnitude();
@@ -33,4 +32,5 @@ public:
 	
 
 };
+Vector2 operator *(float, Vector2);
 

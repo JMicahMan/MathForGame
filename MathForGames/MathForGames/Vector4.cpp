@@ -36,27 +36,27 @@ float Vector4::getw()
 	return wpos1;
 }
 
-Vector4 Vector4::operator+(float & rhs)
+Vector4 Vector4::operator+(Vector4& rhs)
 {
-	float add1 = xpos1 + rhs;
-	float add2 = ypos1 + rhs;
-	float add3 = zpos1 + rhs;
-	float add4 = wpos1 + rhs;
+	float add1 = xpos1 + rhs.getx();
+	float add2 = ypos1 + rhs.gety();
+	float add3 = zpos1 + rhs.getz();
+	float add4 = wpos1 + rhs.getw();
 	Vector4 addtru(add1, add2, add3, add4);
 	return addtru;
 }
 
-Vector4 Vector4::operator-(float & rhs)
+Vector4 Vector4::operator-(Vector4& rhs)
 {
-	float minus1 = xpos1 - rhs;
-	float minus2 = ypos1 - rhs;
-	float minus3 = zpos1 - rhs;
-	float minus4 = wpos1 - rhs;
+	float minus1 = xpos1 - rhs.getx();
+	float minus2 = ypos1 - rhs.gety();
+	float minus3 = zpos1 - rhs.getz();
+	float minus4 = wpos1 - rhs.getw();
 	Vector4 minustru(minus1, minus2, minus3, minus4);
 	return minustru;
 }
 
-Vector4 Vector4::operator*(float & rhs)
+Vector4 Vector4::operator*(float rhs)
 {
 
 	xpos1 *= rhs;
@@ -123,12 +123,13 @@ float Vector4::dot(Vector4 & rhs)
 	return dotprod;
 }
 
-float Vector4::cross(Vector4)
+Vector4 Vector4::cross(Vector4 rhs)
 {
 	
-	float cross = sin(xpos1 * ypos1 * zpos1 * wpos1);
-
-	return cross;
+	return Vector4(ypos1 * rhs.zpos1 - zpos1 * rhs.ypos1,
+		zpos1 * rhs.xpos1 - xpos1 * rhs.zpos1,
+		xpos1 * rhs.ypos1 - ypos1 * rhs.xpos1,
+		0.0f);
 
 }
 
@@ -164,4 +165,18 @@ Vector4::operator float*()
 {
 	float f[4] = { xpos1, ypos1, zpos1, wpos1 };
 	return &f[0];
+}
+
+Vector4 operator*(float rhs, Vector4 stndin)
+{
+	{
+
+		float prod1 = stndin.getx() * rhs;
+		float prod2 = stndin.gety() * rhs;
+		float prod3 = stndin.getz() * rhs;
+		float prod4 = stndin.getw() * rhs;
+		Vector4 prod = Vector4(prod1, prod2, prod3, prod4);
+		return prod;
+	}
+
 }

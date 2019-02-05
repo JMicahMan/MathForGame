@@ -30,25 +30,25 @@ float Vector3::getz()
 	return zpos1;
 }
 
-Vector3 Vector3::operator+(float & rhs)
+Vector3 Vector3::operator+(Vector3& rhs)
 {
-	float add1 = xpos1 + rhs;
-	float add2 = ypos1 + rhs;
-	float add3 = zpos1 + rhs;
+	float add1 = xpos1 + rhs.getx();
+	float add2 = ypos1 + rhs.gety();
+	float add3 = zpos1 + rhs.getz();
 	Vector3 addtru(add1, add2, add3);
 	return addtru;
 }
 
-Vector3 Vector3::operator-(float & rhs)
+Vector3 Vector3::operator-(Vector3& rhs)
 {
-	float minus1 = xpos1 - rhs;
-	float minus2 = ypos1 - rhs;
-	float minus3 = zpos1 - rhs;
+	float minus1 = xpos1 - rhs.getx();
+	float minus2 = ypos1 - rhs.gety();
+	float minus3 = zpos1 - rhs.getz();
 	Vector3 minustru(minus1, minus2, minus3);
 	return minustru;
 }
 
-Vector3 Vector3::operator*(float & rhs)
+Vector3 Vector3::operator*(float rhs)
 {
 
 	xpos1 *= rhs;
@@ -145,4 +145,17 @@ Vector3::operator float*()
 {
 	float f[3] = { xpos1, ypos1, zpos1 };
 	return &f[0];
+}
+
+Vector3 operator*(float rhs, Vector3 stndin)
+{
+	{
+
+		float prod1 = stndin.getx() * rhs;
+		float prod2 = stndin.gety() * rhs;
+		float prod3 = stndin.getz() * rhs;
+		Vector3 prod = Vector3(prod1, prod2, prod3);
+		return prod;
+	}
+
 }

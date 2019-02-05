@@ -31,10 +31,9 @@ public:
 	operator float * ();
 
 
-	void rotationX(float);
-	void rotationY(float);
-	void rotationZ(float);
-	void rotationW(float);
+	void setRotateX(float);
+	void setRotateY(float);
+	void setRotateZ(float);
 
 
 };

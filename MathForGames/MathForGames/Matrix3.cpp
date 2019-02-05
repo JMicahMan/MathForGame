@@ -38,6 +38,25 @@ Matrix3::Matrix3(Vector3 x, Vector3 y, Vector3 z)
 
 Matrix3::Matrix3(float a, float b, float c, float d, float e, float f, float g, float h, float i)
 {
+	MatDat[0][0] = a;
+	MatDat[1][0] = b;
+	MatDat[2][0] = c;
+	MatDat[0][1] = d;
+	MatDat[1][1] = e;
+	MatDat[2][1] = f;
+	MatDat[0][2] = g;
+	MatDat[1][2] = h;
+	MatDat[2][2] = i;
+
+	TempDat[0][0] = a;
+	TempDat[1][0] = b;
+	TempDat[2][0] = c;
+	TempDat[0][1] = d;
+	TempDat[1][1] = e;
+	TempDat[2][1] = f;
+	TempDat[0][2] = g;
+	TempDat[1][2] = h;
+	TempDat[2][2] = i;
 
 }
 
@@ -88,44 +107,48 @@ Vector3 & Matrix3::operator[](int)
 
 }
 
-void Matrix3::rotationX(float rad)
+void Matrix3::setRotateX(float rad)
 {
-	Matrix3 x = Matrix3(cos(rad), sin(rad), 0, -sin(rad), cos(rad), 0, 0, 0, 1);
+	Matrix3 x = Matrix3(cos(rad), sin(rad), 0.0f, -sin(rad), cos(rad), 0.0f, 0.0f, 0.0f, 1);
+
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			MatDat[i][j] = TempDat[0][i] * x.MatDat[j][0] + TempDat[1][i] * x.MatDat[j][1] +
-				TempDat[2][i] * x.MatDat[j][2];
+			TempDat[i][j] = MatDat[0][i] * x.MatDat[j][0] +
+						    MatDat[1][i] * x.MatDat[j][1] +
+						    MatDat[2][i] * x.MatDat[j][2];
 		}
 	}
 }
 
-void Matrix3::rotationY(float rad)
+void Matrix3::setRotateY(float rad)
 {
 
-	Matrix3 y = Matrix3(cos(rad), sin(rad), 0, -sin(rad), cos(rad), 0, 0, 0, 1);
+	Matrix3 y = Matrix3(cos(rad), 0.0f, -sin(rad), 0.0f, 1, 0.0f, sin(rad), 0.0f, cos(rad));
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			MatDat[i][j] = TempDat[0][i] * y.MatDat[j][0] + TempDat[1][i] * y.MatDat[j][1] +
-				TempDat[2][i] * y.MatDat[j][2];
+			TempDat[i][j] =MatDat[0][i] * y.MatDat[j][0] + 
+						   MatDat[1][i] * y.MatDat[j][1] +
+						   MatDat[2][i] * y.MatDat[j][2];
 		}
 	}
 
 }
 
-void Matrix3::rotationZ(float rad)
+void Matrix3::setRotateZ(float rad)
 {
 
-	Matrix3 z = Matrix3(cos(rad), sin(rad), 0, -sin(rad), cos(rad), 0, 0, 0, 1);
+	Matrix3 z = Matrix3(1, 0.0f, 0.0f, 0.0f, cos(rad), sin(rad), 0.0f, -sin(rad), cos(rad));
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			MatDat[i][j] = TempDat[0][i] * z.MatDat[j][0] + TempDat[1][i] * z.MatDat[j][1] +
-				TempDat[2][i] * z.MatDat[j][2];
+			TempDat[i][j] = MatDat[0][i] * z.MatDat[j][0] +
+							MatDat[1][i] * z.MatDat[j][1] +
+						    MatDat[2][i] * z.MatDat[j][2];
 		}
 	}
 

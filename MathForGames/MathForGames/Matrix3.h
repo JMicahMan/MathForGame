@@ -32,9 +32,9 @@ public:
 
 	Vector3& operator[] (int);
 
-	void rotationX(float);
-	void rotationY(float);
-	void rotationZ(float);
+	void setRotateX(float);
+	void setRotateY(float);
+	void setRotateZ(float);
 
 
 };

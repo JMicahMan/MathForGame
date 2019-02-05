@@ -18,9 +18,9 @@ public:
 	float getx();
 	float gety();
 	float getz();
-	Vector3 operator + (float& rhs);
-	Vector3 operator - (float& rhs);
-	Vector3 operator * (float& rhs);
+	Vector3 operator + (Vector3& rhs);
+	Vector3 operator - (Vector3& rhs);
+	Vector3 operator * (float rhs);
 	bool operator == (Vector3& rhs);
 	bool operator != (Vector3& rhs);
 	float magnitude();
@@ -35,4 +35,6 @@ public:
 
 
 };
+Vector3 operator *(float, Vector3);
+
 

@@ -5,6 +5,7 @@
 
 Vector2::Vector2()
 {
+
 }
 
 Vector2::Vector2(float x, float y)
@@ -24,23 +25,23 @@ float Vector2::gety()
 	return ypos1;
 }
 
-Vector2 Vector2::operator+(float & rhs)
+Vector2 Vector2::operator+(Vector2& rhs)
 {
-	float add1 = xpos1 + rhs;
-	float add2 = ypos1 + rhs;
+	float add1 = xpos1 + rhs.getx();
+	float add2 = ypos1 + rhs.gety();
 	Vector2 addtru(add1, add2);
 	return addtru;
 }
 
-Vector2 Vector2::operator-(float & rhs)
+Vector2 Vector2::operator-(Vector2& rhs)
 {
-	float minus1 = xpos1 - rhs;
-	float minus2 = ypos1 - rhs;
+	float minus1 = xpos1 - rhs.getx();
+	float minus2 = ypos1 - rhs.gety();
 	Vector2 minustru(minus1, minus2);
 	return minustru;
 }
 
-Vector2 Vector2::operator*(float & rhs)
+Vector2 Vector2::operator*(float rhs)
 {
 	xpos1 *= rhs;
 	ypos1 *= rhs;
@@ -122,4 +123,13 @@ Vector2::operator float*()
 	float f[2] = { xpos1, ypos1 };
 	return &f[0];
 
+}
+
+Vector2 operator*(float rhs, Vector2 stndin)
+{
+	
+	float prod1 = stndin.getx() * rhs;
+	float prod2 = stndin.gety() * rhs;
+	Vector2 prod = Vector2(prod1, prod2);
+	return prod;
 }
