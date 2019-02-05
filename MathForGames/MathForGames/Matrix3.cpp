@@ -60,6 +60,34 @@ Matrix3 Matrix3::operator*(Matrix3 rhs)
 
 }
 
+Vector3 Matrix3::operator*(Vector3 rhs)
+{
+	Vector3 MatVecProd;
+
+	for (int i=0;i<3;i++)
+	{
+		MatVecProd[i] == MatDat[0][i] * rhs[i]+
+					   	 MatDat[1][i] * rhs[i]+
+						 MatDat[2][i] * rhs[i];
+	}
+
+	return MatVecProd;
+}
+
+Matrix3::operator float*()
+{
+	return MatDat[0];
+}
+
+Vector3 & Matrix3::operator[](int)
+{
+	Vector3 V = Vector3(MatDat[0][0],
+						MatDat[1][0],
+						MatDat[2][0]);
+	return V;
+
+}
+
 void Matrix3::rotationX(float rad)
 {
 	Matrix3 x = Matrix3(cos(rad), sin(rad), 0, -sin(rad), cos(rad), 0, 0, 0, 1);

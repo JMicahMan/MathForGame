@@ -59,12 +59,40 @@ Matrix4 Matrix4::operator*(Matrix4 rhs)
 		for (int j = 0; j < 3; j++)
 		{
 			MatProd.MatDat[i][j] = MatDat[i][0] * rhs.MatDat[0][j] + MatDat[i][1] * rhs.MatDat[1][j]
-				+ MatDat[i][2] * rhs.MatDat[2][j];
+				+ MatDat[i][2] * rhs.MatDat[2][j] + MatDat[i][3] * rhs.MatDat[3][j];
 			return MatProd;
 		}
 	}
 
 
+}
+
+Vector4 Matrix4::operator*(Vector4 rhs)
+{
+	Vector4 MatVecProd;
+
+	for (int i = 0; i<3; i++)
+	{
+		MatVecProd[i] == MatDat[0][i] * rhs[i] + MatDat[1][i] * rhs[i] + MatDat[2][i] * rhs[i] + 
+			MatDat[3][i] * rhs[i];
+	}
+
+	return MatVecProd;
+
+}
+
+Vector4 & Matrix4::operator[](int)
+{
+	Vector4 V = Vector4(MatDat[0][0],
+						MatDat[1][0],
+						MatDat[2][0],
+						MatDat[3][0]);
+	return V;
+}
+
+Matrix4::operator float*()
+{
+	return MatDat[0];
 }
 
 void Matrix4::rotationX(float rad)

@@ -1,8 +1,11 @@
 #include "Vector4.h"
-#include <math.h>
 #include <cmath>
 
 
+
+Vector4::Vector4()
+{
+}
 
 Vector4::Vector4(float x, float y, float z, float w)
 {
@@ -56,12 +59,12 @@ Vector4 Vector4::operator-(float & rhs)
 Vector4 Vector4::operator*(float & rhs)
 {
 
-	float prodo1 = xpos1 * rhs;
-	float prodo2 = ypos1 * rhs;
-	float prodo3 = zpos1 * rhs;
-	float prodo4 = wpos1 * rhs;
-	Vector4 prodotru(prodo1, prodo2, prodo3, prodo4);
-	return prodotru;
+	xpos1 *= rhs;
+	ypos1 *= rhs;
+	zpos1 *= rhs;
+	wpos1 *= rhs;
+
+	return *this;
 }
 
 bool Vector4::operator==(Vector4 & rhs)
@@ -150,4 +153,15 @@ float Vector4::operator[](int index)
 	{
 		return wpos1;
 	}
+
+	else
+	{
+		return 0;
+	}
+}
+
+Vector4::operator float*()
+{
+	float f[4] = { xpos1, ypos1, zpos1, wpos1 };
+	return &f[0];
 }

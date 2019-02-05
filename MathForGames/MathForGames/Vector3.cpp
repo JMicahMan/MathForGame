@@ -1,8 +1,11 @@
 #include "Vector3.h"
-#include <math.h>
 #include <cmath>
 
 
+
+Vector3::Vector3()
+{
+}
 
 Vector3::Vector3(float x, float y, float z)
 {
@@ -48,11 +51,11 @@ Vector3 Vector3::operator-(float & rhs)
 Vector3 Vector3::operator*(float & rhs)
 {
 
-	float prodo1 = xpos1 * rhs;
-	float prodo2 = ypos1 * rhs;
-	float prodo3 = zpos1 * rhs;
-	Vector3 prodotru(prodo1, prodo2, prodo3);
-	return prodotru;
+	xpos1 *= rhs;
+	ypos1 *= rhs;
+	zpos1 *= rhs;
+
+	return *this;
 }
 
 bool Vector3::operator==(Vector3 & rhs)
@@ -108,13 +111,11 @@ float Vector3::dot(Vector3 & rhs)
 	return dotprod;
 }
 
-float Vector3::cross(Vector3)
+Vector3 Vector3::cross(Vector3 rhs)
 {
-	
-	float cross = sin(xpos1 * ypos1 * zpos1);
-
-	return cross;
-
+	return Vector3(ypos1 * rhs.zpos1 - zpos1 * rhs.ypos1,
+		zpos1 * rhs.xpos1 - xpos1 * rhs.zpos1,
+		xpos1 * rhs.ypos1 - ypos1 * rhs.xpos1);
 }
 
 float Vector3::operator[](int index)
@@ -133,4 +134,15 @@ float Vector3::operator[](int index)
 	{
 		return zpos1;
 	}
+
+	else
+	{
+		return 0;
+	}
+}
+
+Vector3::operator float*()
+{
+	float f[3] = { xpos1, ypos1, zpos1 };
+	return &f[0];
 }

@@ -24,6 +24,11 @@ public:
 	);
 
 	Matrix4 operator * (Matrix4);
+	Vector4 operator * (Vector4);
+
+	Vector4& operator[](int);
+
+	operator float * ();
 
 
 	void rotationX(float);

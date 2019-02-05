@@ -22,9 +22,15 @@ public:
 		float, float, float
 	);
 
+	
 
 	
 	Matrix3 operator * (Matrix3);
+	Vector3 operator * (Vector3);
+
+	operator float*();
+
+	Vector3& operator[] (int);
 
 	void rotationX(float);
 	void rotationY(float);

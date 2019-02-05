@@ -1,8 +1,11 @@
 #include "Vector2.h"
-#include <math.h>
 #include <cmath>
 
 
+
+Vector2::Vector2()
+{
+}
 
 Vector2::Vector2(float x, float y)
 {
@@ -39,11 +42,10 @@ Vector2 Vector2::operator-(float & rhs)
 
 Vector2 Vector2::operator*(float & rhs)
 {
-	
-	float prodo1 = xpos1 * rhs;
-	float prodo2 = ypos1 * rhs;
-	Vector2 prodotru (prodo1, prodo2);
-	return prodotru;
+	xpos1 *= rhs;
+	ypos1 *= rhs;
+
+	return *this;
 }
 
 bool Vector2::operator==(Vector2 & rhs)
@@ -96,14 +98,6 @@ float Vector2::dot(Vector2 & rhs)
 	return dotprod;
 }
 
-float Vector2::cross(Vector2)
-{
-
-	float cross = sin(xpos1 * ypos1);
-
-	return cross;
-	
-}
 
 float Vector2::operator[](int index)
 {
@@ -116,4 +110,16 @@ float Vector2::operator[](int index)
 	{
 		return ypos1;
 	}
+	
+	else
+	{
+		return 0;
+	}
+}
+
+Vector2::operator float*()
+{
+	float f[2] = { xpos1, ypos1 };
+	return &f[0];
+
 }
