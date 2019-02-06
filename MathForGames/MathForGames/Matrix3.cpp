@@ -2,14 +2,26 @@
 
 Matrix3::Matrix3()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			MatDat[i][j] = 0;
-			TempDat[i][j] = 0;
-		}
-	}
+	MatDat[0][0] = 1;
+	MatDat[1][0] = 0;
+	MatDat[2][0] = 0;
+	MatDat[0][1] = 0;
+	MatDat[1][1] = 1;
+	MatDat[2][1] = 0;
+	MatDat[0][2] = 0;
+	MatDat[1][2] = 0;
+	MatDat[2][2] = 1;
+
+	TempDat[0][0] = 1;
+	TempDat[1][0] = 0;
+	TempDat[2][0] = 0;
+	TempDat[0][1] = 0;
+	TempDat[1][1] = 1;
+	TempDat[2][1] = 0;
+	TempDat[0][2] = 0;
+	TempDat[1][2] = 0;
+	TempDat[2][2] = 1;
+
 }
 
 Matrix3::Matrix3(Vector3 x, Vector3 y, Vector3 z)
@@ -28,8 +40,8 @@ Matrix3::Matrix3(Vector3 x, Vector3 y, Vector3 z)
 
 	for (int i = 0; i < 3; i++)
 	{
-		MatDat[i][2] = x[i];
-		TempDat[i][0] = x[i];
+		MatDat[i][2] = z[i];
+		TempDat[i][0] = z[i];
 	}
 
 
@@ -98,26 +110,56 @@ Matrix3::operator float*()
 	return MatDat[0];
 }
 
-Vector3 & Matrix3::operator[](int)
+Vector3 & Matrix3::operator[](int C)
 {
-	Vector3 V = Vector3(MatDat[0][0],
-						MatDat[1][0],
-						MatDat[2][0]);
-	return V;
+
+	if (C == 0)
+	{
+		Vector3 V;
+	 V = Vector3 (TempDat[0][0],
+			      TempDat[1][0],
+			      TempDat[2][0]);
+
+	 return V;
+	}
+	
+	if (C == 1)
+	{
+		Vector3 V;
+		V = Vector3(TempDat[0][1],
+			        TempDat[1][1],
+					TempDat[2][1]);
+
+		return V;
+	}
+
+	if (C == 2)
+	{
+		Vector3 V;
+		V = Vector3(TempDat[0][2],
+					TempDat[1][2],
+					TempDat[2][2]);
+
+		return V;
+	}
+
 
 }
 
-void Matrix3::setRotateX(float rad)
+void Matrix3::setRotateZ(float rad)
 {
-	Matrix3 x = Matrix3(cos(rad), sin(rad), 0.0f, -sin(rad), cos(rad), 0.0f, 0.0f, 0.0f, 1);
+	Matrix3 z = Matrix3(
+		cos(rad), sin(rad), 0.0f,
+		-sin(rad), cos(rad), 0.0f, 
+		0.0f, 0.0f, 1);
 
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			TempDat[i][j] = MatDat[0][i] * x.MatDat[j][0] +
-						    MatDat[1][i] * x.MatDat[j][1] +
-						    MatDat[2][i] * x.MatDat[j][2];
+			MatDat[j][i] = TempDat[0][i] * z.MatDat[j][0] +
+						   TempDat[1][i] * z.MatDat[j][1] +
+						   TempDat[2][i] * z.MatDat[j][2];
 		}
 	}
 }
@@ -125,30 +167,32 @@ void Matrix3::setRotateX(float rad)
 void Matrix3::setRotateY(float rad)
 {
 
-	Matrix3 y = Matrix3(cos(rad), 0.0f, -sin(rad), 0.0f, 1, 0.0f, sin(rad), 0.0f, cos(rad));
+	Matrix3 y = Matrix3(cos(rad), 0.0f, -sin(rad), 
+						0.0f, 1, 0.0f,
+						sin(rad), 0.0f, cos(rad));
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			TempDat[i][j] =MatDat[0][i] * y.MatDat[j][0] + 
-						   MatDat[1][i] * y.MatDat[j][1] +
-						   MatDat[2][i] * y.MatDat[j][2];
+			MatDat[j][i] = TempDat[0][i] * y.MatDat[j][0] +
+						   TempDat[1][i] * y.MatDat[j][1] +
+						   TempDat[2][i] * y.MatDat[j][2];
 		}
 	}
 
 }
 
-void Matrix3::setRotateZ(float rad)
+void Matrix3::setRotateX(float rad)
 {
 
-	Matrix3 z = Matrix3(1, 0.0f, 0.0f, 0.0f, cos(rad), sin(rad), 0.0f, -sin(rad), cos(rad));
+	Matrix3 x = Matrix3(1, 0.0f, 0.0f, 0.0f, cos(rad), sin(rad), 0.0f, -sin(rad), cos(rad));
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			TempDat[i][j] = MatDat[0][i] * z.MatDat[j][0] +
-							MatDat[1][i] * z.MatDat[j][1] +
-						    MatDat[2][i] * z.MatDat[j][2];
+			MatDat[j][i] =  TempDat[0][i] * x.MatDat[j][0] +
+							TempDat[1][i] * x.MatDat[j][1] +
+				            TempDat[2][i] * x.MatDat[j][2];
 		}
 	}
 

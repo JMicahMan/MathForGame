@@ -2,14 +2,41 @@
 
 Matrix4::Matrix4()
 {
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			MatDat[i][j] = 0;
-			TempDat[i][j] = 0;
-		}
-	}
+	MatDat[0][0] = 1;
+	MatDat[1][0] = 0;
+	MatDat[2][0] = 0;
+	MatDat[3][0] = 0;
+	MatDat[0][1] = 0;
+	MatDat[1][1] = 1;
+	MatDat[2][1] = 0;
+	MatDat[3][1] = 0;
+	MatDat[0][2] = 0;
+	MatDat[1][2] = 0;
+	MatDat[2][2] = 1;
+	MatDat[3][2] = 0;
+	MatDat[0][3] = 0;
+	MatDat[1][3] = 0;
+	MatDat[2][3] = 0;
+	MatDat[3][3] = 1;
+
+	TempDat[0][0] = 1;
+	TempDat[1][0] = 0;
+	TempDat[2][0] = 0;
+	TempDat[3][0] = 0;
+	TempDat[0][1] = 0;
+	TempDat[1][1] = 1;
+	TempDat[2][1] = 0;
+	TempDat[3][1] = 0;
+	TempDat[0][2] = 0;
+	TempDat[1][2] = 0;
+	TempDat[2][2] = 1;
+	TempDat[3][2] = 0;
+	TempDat[0][3] = 0;
+	TempDat[1][3] = 0;
+	TempDat[2][3] = 0;
+	TempDat[3][3] = 1;
+
+
 }
 
 Matrix4::Matrix4(Vector4 x, Vector4 y, Vector4 z, Vector4 w)
@@ -116,13 +143,52 @@ Vector4 Matrix4::operator*(Vector4 rhs)
 
 }
 
-Vector4 & Matrix4::operator[](int)
+Vector4 & Matrix4::operator[](int C)
 {
-	Vector4 V = Vector4(MatDat[0][0],
-						MatDat[1][0],
-						MatDat[2][0],
-						MatDat[3][0]);
-	return V;
+	if (C == 0)
+	{
+		Vector4 V;
+		V = Vector4(TempDat[0][0],
+					TempDat[1][0],
+					TempDat[2][0],
+					TempDat[3][0]);
+
+		return V;
+	}
+
+	if (C == 1)
+	{
+		Vector4 V;
+		V = Vector4(TempDat[0][1],
+				    TempDat[1][1],
+					TempDat[2][1],
+					TempDat[3][1]);
+
+		return V;
+	}
+
+	if (C == 2)
+	{
+		Vector4 V;
+		V = Vector4(TempDat[0][2],
+					TempDat[1][2],
+					TempDat[2][2],
+					TempDat[3][2]);
+
+		return V;
+	}
+
+	if (C == 3)
+	{
+		Vector4 V;
+		V = Vector4(TempDat[0][3],
+					TempDat[1][3],
+					TempDat[2][3],
+					TempDat[3][3]);
+
+		return V;
+	}
+
 }
 
 Matrix4::operator float*()
@@ -132,15 +198,19 @@ Matrix4::operator float*()
 
 void Matrix4::setRotateX(float rad)
 {
-	Matrix4 x = Matrix4(1, 0.0f, 0.0f, 0.0f, 0.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f, cos(rad), sin(rad), 0.0f, 0.0f, -sin(rad), cos(rad));
-	for (int i = 0; i < 3; i++)
+	Matrix4 x = Matrix4(1, 0.0f, 0.0f, 0.0f,
+						0.0f,cos(rad), sin(rad), 0.0f,
+						0.0f, -sin(rad),cos(rad), 0.0f,
+					    0.0f,0.0f, 0.0f, 1);
+
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			TempDat[i][j] = MatDat[0][i] * x.MatDat[j][0] +
-							MatDat[1][i] * x.MatDat[j][1] +
-							MatDat[2][i] * x.MatDat[j][2] +
-							MatDat[3][i] * x.MatDat[j][3];
+			MatDat[i][j] =  TempDat[0][i] * x.MatDat[j][0] +
+							TempDat[1][i] * x.MatDat[j][1] +
+							TempDat[2][i] * x.MatDat[j][2] +
+							TempDat[3][i] * x.MatDat[j][3];
 
 		}
 	}
@@ -150,15 +220,18 @@ void Matrix4::setRotateX(float rad)
 void Matrix4::setRotateY(float rad)
 {
 
-	Matrix4 y = Matrix4(1, 0.0f, 0.0f, 0.0f, 0.0f, cos(rad), sin(rad), 0.0f, 0.0f, -sin(rad), cos(rad), 0.0f, 0.0f, 0.0f, 0.0f, 1);
-	for (int i = 0; i < 3; i++)
+	Matrix4 y = Matrix4(cos(rad), 0.0f, -sin(rad), 0.0f,
+						0.0f, 1, 0.0f, 0.0f,
+						sin(rad), 0.0f, cos(rad), 0.0f,
+						0.0f, 0.0f, 0.0f, 1);
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			TempDat[i][j] = MatDat[0][i] * y.MatDat[j][0] +
-							MatDat[1][i] * y.MatDat[j][1] +
-							MatDat[2][i] * y.MatDat[j][2] +
-							MatDat[3][i] * y.MatDat[j][3];
+			MatDat[i][j] =  TempDat[0][i] * y.MatDat[j][0] +
+							TempDat[1][i] * y.MatDat[j][1] +
+							TempDat[2][i] * y.MatDat[j][2] +
+							TempDat[3][i] * y.MatDat[j][3];
 		}
 	}
 
@@ -166,15 +239,19 @@ void Matrix4::setRotateY(float rad)
 
 void Matrix4::setRotateZ(float rad)
 {
-	Matrix4 z = Matrix4(1, 0.0f, 0.0f, 0.0f, 0.0f, cos(rad), 0.0f, -sin(rad), 0.0f, 0.0f, 1, 0.0f, 0.0f, sin(rad), 0.0f, cos(rad));
-	for (int i = 0; i < 3; i++)
+	Matrix4 z = Matrix4(cos(rad), sin(rad), 0.0f, 0.0f,
+						-sin(rad),cos(rad), 0.0f, 0.0f,
+						0.0f, 0.0f, 1, 0.0f, 
+						0.0f, 0.0f, 0.0f, 1);
+
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			TempDat[i][j] = MatDat[0][i] * z.MatDat[j][0] +
-							MatDat[1][i] * z.MatDat[j][1] +
-							MatDat[2][i] * z.MatDat[j][2] +
-							MatDat[3][i] * z.MatDat[j][3];
+			MatDat[i][j] =  TempDat[0][i] * z.MatDat[j][0] +
+							TempDat[1][i] * z.MatDat[j][1] +
+							TempDat[2][i] * z.MatDat[j][2] +
+							TempDat[3][i] * z.MatDat[j][3];
 		}
 	}
 
