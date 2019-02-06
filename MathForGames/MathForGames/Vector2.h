@@ -23,6 +23,7 @@ public:
 	float magnitude();
 	float normalise();
 	float dot(Vector2& rhs);
+
 	float operator[] (int index);
 	operator float * ();
 

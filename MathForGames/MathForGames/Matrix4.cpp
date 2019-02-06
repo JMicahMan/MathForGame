@@ -199,10 +199,11 @@ Matrix4::operator float*()
 void Matrix4::setRotateX(float rad)
 {
 	Matrix4 x = Matrix4(1, 0.0f, 0.0f, 0.0f,
-						0.0f,cos(rad), sin(rad), 0.0f,
-						0.0f, -sin(rad),cos(rad), 0.0f,
-					    0.0f,0.0f, 0.0f, 1);
-
+						0.0f, cos(rad), sin(rad), 0.0f,
+						0.0f, -sin(rad), cos(rad), 0.0f,
+						0.0f, 0.0f, 0.0f, 1);
+	
+						
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
